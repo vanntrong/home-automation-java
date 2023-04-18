@@ -1,4 +1,4 @@
-package com.javaiot.myapplication;
+package com.javaiot.client;
 
 import org.junit.Test;
 

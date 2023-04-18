@@ -1,6 +1,7 @@
 package com.javaiot.server.controllers;
 
 import jakarta.websocket.server.PathParam;
+import org.json.JSONObject;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
@@ -26,7 +27,11 @@ public class ChatController {
     @GetMapping("/leds/{ledNumber}")
     String sendLed(@RequestParam("status") int status, @PathVariable("ledNumber") String ledNumber) {
         String ledStatus = status == 0 ? "off" : "on";
-        messagingTemplate.convertAndSend("/home-device/messages/q", "led" + ledNumber + " " + ledStatus);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("device", "led");
+        jsonObject.put("number", ledNumber);
+        jsonObject.put("status", ledStatus);
+        messagingTemplate.convertAndSend("/home-device/messages/q",jsonObject.toString());
         return "Send request to q led" + ledNumber + " "  + ledStatus;
     }
 }
