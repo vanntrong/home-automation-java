@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.javaiot.client.databinding.ActivityMainBinding;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         connectSocket();
+        setupDevices();
         addEvents();
     }
 
@@ -76,5 +78,29 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         });
+
+        stompClient.topic("/home-device/setup-devices/q").subscribe(stompMessage -> {
+            JSONArray jsonArray = new JSONArray(stompMessage.getPayload());
+            runOnUiThread(() -> {
+                try {
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        String status = jsonObject.getString("status");
+                        binding.swChangeLed1Status.setChecked(status.equals("on") ? true : false);
+                        binding.imvLedStatus.setImageResource(status.equals("on") ? R.drawable.ic_baseline_light_mode_24 : R.drawable.ic_baseline_lightbulb_24);
+                    }
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();;
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            });
+        });
+    }
+
+    public void setupDevices() {
+        stompClient.send("/room/q/setup-devices").subscribe();
     }
 }

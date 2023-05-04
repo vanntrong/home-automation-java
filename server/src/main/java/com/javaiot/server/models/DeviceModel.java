@@ -1,13 +1,13 @@
 package com.javaiot.server.models;
 
 public class DeviceModel {
-    private String id;
+    private int id;
     private String name;
     private String status;
     private String type;
-    private Long pin;
+    private int pin;
 
-    public DeviceModel(String id, String name, String status, String type, Long pin) {
+    public DeviceModel(int id, String name, String status, String type, int pin) {
         this.id = id;
         this.name = name;
         this.status = status;
@@ -15,18 +15,18 @@ public class DeviceModel {
         this.pin = pin;
     }
 
-    public DeviceModel(String name, String status, String type, Long pin) {
+    public DeviceModel(String name, String status, String type, int pin) {
         this.name = name;
         this.status = status;
         this.type = type;
         this.pin = pin;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -54,11 +54,11 @@ public class DeviceModel {
         this.type = type;
     }
 
-    public Long getPin() {
+    public int getPin() {
         return pin;
     }
 
-    public void setPin(Long pin) {
+    public void setPin(int pin) {
         this.pin = pin;
     }
 }
