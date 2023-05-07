@@ -43,7 +43,7 @@ public class DeviceController {
         messagingTemplate.convertAndSend("/home-device/messages/" + to, message);
     }
 
-    @GetMapping("/leds/{ledNumber}")
+    @GetMapping("/leds/{ledNumber}") // https://e96c-2001-ee0-4f84-c8d0-a9e8-4e52-6038-af07.ap.ngrok.io/leds/2?status=1
     String sendLed(@RequestParam("status") int status, @PathVariable("ledNumber") String ledNumber) {
         String ledStatus = status == 0 ? "off" : "on";
         JSONObject jsonObject = new JSONObject();

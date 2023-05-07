@@ -21,9 +21,9 @@ FirebaseAuth auth;
 /* Define the FirebaseConfig data for config data */
 FirebaseConfig config;
 
-const char* wlan_ssid             = "Tang 1 Tro 198_2.4G";
-const char* wlan_password         = "khongbiet";
-const char* ws_host               = "192.168.1.2";
+const char* wlan_ssid             = "8==D";
+const char* wlan_password         = "246357cn";
+const char* ws_host               = "192.168.152.244";
 const int   ws_port               = 8080;
 
 FirebaseJsonArray *listDevices;

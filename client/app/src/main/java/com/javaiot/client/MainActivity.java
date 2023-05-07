@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void connectSocket() {
-        stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, "ws://192.168.1.2:8080/iot/websocket");
+        stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, "ws://192.168.152.244:8080/iot/websocket");
         Toast.makeText(this, "Start connecting to server", Toast.LENGTH_SHORT).show();
         stompClient.connect();
         StompUtils.lifecycle(stompClient);
